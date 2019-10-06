@@ -1,0 +1,43 @@
+{% extends 'blog/base.html' %}
+{% block title %}{{ post.title }}{% endblock %}
+    {% block body %}
+
+<div class="container">
+	<h2>Add Image Option</h2>
+	<br>
+
+	<div class = "container">
+		<div class = "col-md-10">
+		<div class="content-section py-5">
+			<form method="POST">
+				{% csrf_token %}
+				<fieldset class="form-group">
+					<legend class="border-bottom mb-4">
+					    {{ post.title }} - {{ post.author }}
+					    <span style="float:right;">
+					    		{% if post.author == user %}
+								<a class = "btn btn-outline-danger btn-xs" href="{% url 'blog:delete-post' post.id %}">Delete</a>
+								<a class = "btn btn-outline-warning btn-xs" href="{% url 'blog:update-post' post.id %}">Update</a>
+								{% endif %}
+					        <small class="text-muted">{{ post.date|date:"F d, Y" }}</small>
+					    </span>
+					</legend>
+				</fieldset>
+  <div class="jumbotron">
+    <p>{{ post.content }}</p> 
+</div>
+  </div>
+<h5></h5>
+</div>
+
+{% endblock %}
+
+
+
+
+
+
+
+
+
+

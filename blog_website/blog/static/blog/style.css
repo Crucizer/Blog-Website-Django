@@ -1,0 +1,27 @@
+/*.hide-text{
+white-space: nowrap;
+width: 2000px;
+overflow: hidden;
+text-overflow: ellipsis;
+}*/
+
+body{
+background: url(wall.jpg) no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+.hide-text{
+   /*the line height must be known */
+  line-height: 2.9ex;
+}
+
+.hide-text{
+  /* restrict the height on three lines */
+  height: calc(3.2ex * 3);
+
+  /* hide the overflow */
+  overflow: hidden;
+}

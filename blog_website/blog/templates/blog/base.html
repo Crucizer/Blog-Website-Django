@@ -1,0 +1,59 @@
+<html>
+<head>
+	<title>
+		{% block title %}Blog{% endblock %}
+	</title>
+  <link rel="icon" type="image/ico" href="logo.jpg" />
+<!-- BootStrap -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<!-- JavaScript Files -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+<!-- Font Awesome -->
+   <script
+      src="https://use.fontawesome.com/releases/v5.10.2/js/all.js"
+      data-auto-a11y="true"
+    ></script>
+	</head>
+<body>
+    <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark mynav sticky-top navbar navbar-inverse">
+        <a class="navbar-brand font-weight-bold" href="{% url 'blog:index' %}">Blog</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse mr-100" id="navbarNavDropdown">
+  <ul class = "navbar-nav mr-auto">
+    <li class = "navbar-item active">
+      <a class = "nav-link" href = "{% url 'blog:index' %}"><i class="fas fa-blog"></i> Posts</a>
+    </li>
+  </ul>
+    <ul class = "navbar-nav ml-auto">
+    <li class = "navbar-item active">
+      <a class = "nav-link" href = "{% url 'blog:create-post' %}"><i class="fa fa-plus"></i> New Post</a>
+    </li>
+    <li class = "navbar-item active">
+      <a class = "nav-link" href = "{% url 'blog:profile' %}"><i class="fa fa-user" aria-hidden="true"></i> My Profile</a>
+    </li>
+    <li class = "navbar-item active">
+      <a class = "nav-link" href = "{% url 'blog:logout' %}"><i class="fa fa-power-off"></i> Logout</a>
+    </li>
+            </ul>
+        </div>
+ </nav>
+       <div class="col-md-12">
+      {% if messages %}
+        {% for message in messages %}
+          <div class="alert alert-{{ message.tags }}">
+            <strong>{{ message }}</strong>
+          </div>
+        {% endfor %}
+      {% endif %}
+  </div>
+  
+  <div class = "col-md-12">
+{% block body %}
+{% endblock %}
+  </div>
+
+</body>
+</html>

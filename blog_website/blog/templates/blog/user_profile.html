@@ -1,0 +1,44 @@
+{% extends 'blog/base.html' %}
+
+{% load staticfiles %}
+
+<link rel= "stylesheet" type= "text/css" href = "{% static 'blog/style.css' %}">
+
+{% block title %}Profile{% endblock %}
+{% if messages %}
+	{% for message in messages %}
+	<div class= "alert alert-{{ message.tags }}">{{ message }}</div>
+	{% endfor %}
+{% endif %}
+    {% block body %}
+
+    <h2 class = "mb-3">{{ view.kwargs.username }} Posts</h2>
+<div class = "container">
+<br>
+
+<link rel="stylesheet" href="style.css">
+
+<div class = "container-fluid">
+<div class="row">
+{% for post in posts %}
+
+      <div class="col-md-9">
+      <div class="card text-center border-primary"><!-- style="width: 19rem; height: 20rem;" -->
+        <div class="card-body">
+        	<div class = "card-header">
+          <h5 class="card-title">{{ post.title }} - {{ post.author }}</h5>
+      </div>
+      <div class = "hide-text">
+          <h5 class="card-text"></h5><p class='text-muted' style="overflow: hidden; text-overflow: ellipsis;">
+          {{ post.content }} 
+      </p></div>
+          <a href="{% url 'blog:post-content' post.id %}" class="btn btn-primary">Read More</a>
+      </div><!-- card-body -->
+    </div><!-- card -->
+  </div><!-- column --><br>
+{% endfor %}
+
+</div><!-- row -->
+</div><!-- container -->
+
+{% endblock %}

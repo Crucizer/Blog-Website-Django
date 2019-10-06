@@ -1,0 +1,57 @@
+{% extends 'blog/base.html' %}
+
+{% load staticfiles %}
+
+<link rel= "stylesheet" type= "text/css" href = "{% static 'blog/style.css' %}">
+
+{% block title %}Blog{% endblock %}
+{% if messages %}
+	{% for message in messages %}
+	<div class= "alert alert-{{ message.tags }}">{{ message }}</div>
+	{% endfor %}
+{% endif %}
+    {% block body %}
+<div class = "container">
+<h1>Blogs</h1>
+<br>
+
+<div class = "container-fluid">
+<div class="row">
+<!--           <div class="col-md-2 ml-auto">
+          <div class="content-section">
+            <h3>Our Sidebar</h3>
+            <p class='text-muted'>You can put any information here you'd like.
+              <ul class="list-group">
+                <li class="list-group-item list-group-item-light">Latest Posts</li>
+                <li class="list-group-item list-group-item-light">Announcements</li>
+                <li class="list-group-item list-group-item-light">Calendars</li>
+                <li class="list-group-item list-group-item-light">etc</li>
+              </ul>
+            </p>
+          </div>
+        </div>
+      </div>
+    </main> -->
+{% for post in posts %}
+
+      <div class="col-md-9 p-3">
+      <div class="card text-center border-primary"><!-- style="width: 19rem; height: 20rem;" -->
+        <div class="card-body">
+        	<div class = "card-header">
+          <h5 class="card-title"><a href="{% url 'blog:post-content' post.id %}">{{ post.title }}</a> - <a href="user/{{ post.author }}">{{ post.author }}</a></h5><small class="text-muted">{{ post.date|date:"F d, Y" }}</small>
+      </div>
+      <div class = "hide-text">
+          <h5 class="card-text"></h5><p class='text-muted' style="overflow: hidden; text-overflow: ellipsis;">
+          {{ post.content }} 
+      </p>
+    </div>
+          <a href="{% url 'blog:post-content' post.id %}" class="btn btn-primary">Read More</a>
+      </div><!-- card-body -->
+    </div><!-- card -->
+  </div><!-- column --><br>
+{% endfor %}
+
+</div><!-- row -->
+</div><!-- container -->
+
+{% endblock %}

@@ -1,0 +1,22 @@
+{% extends 'blog/base.html' %}
+{% block title %}Blog{% endblock %}
+    {% block body %}
+	<div class = "container">
+		<div class="content-section py-5">
+			<form method="POST">
+				{% csrf_token %}
+				<fieldset class="form-group">
+					<legend class="border-bottom mb-4">
+						Delete Post
+					</legend>
+				</fieldset>
+				<h2>You Sure You Wanna Delete The Post '{{ post }}'</h2>
+				<div class="form-group">
+					<button class="btn btn-outline-danger" type = "submit">Yes, Delete Post</button>
+					<button class="btn btn-outline-success" href='/post/blog/{{ post.id }}/delete/'>Cancel</button>
+				</div>
+			</form>
+		</div>   
+	</div>
+
+{% endblock %}
